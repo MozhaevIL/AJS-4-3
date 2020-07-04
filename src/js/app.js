@@ -1,6 +1,11 @@
-// TODO: write your code here
-import sum from './basic';
+import fetchData from './http';
 
-console.log('worked');
+export default function getLevel(userId) {
+  const response = fetchData(`https://server/user/${userId}`);
 
-console.log(sum([1, 2]));
+  if (response.status === 'ok') {
+    return `Ваш текущий уровень: ${response.level}`;
+  }
+
+  return 'Информация об уровне временно недоступна';
+}
